@@ -11,7 +11,7 @@ const BIGRAMS_LENGTH = 50
 const bigrams = []
 const cases = []
 
-rl.on('line', line => bigrams.length < BIGRAMS_LENGTH-1 ? bigrams.push(line.substr(0,2).toUpperCase()) : cases.push(line.toUpperCase()))
+rl.on('line', line => bigrams.length < BIGRAMS_LENGTH ? bigrams.push(line.substr(0,2).toUpperCase()) : cases.push(line.toUpperCase()))
 
 rl.on('close', () => console.log(
   cases.map(word =>
