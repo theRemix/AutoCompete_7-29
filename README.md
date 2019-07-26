@@ -2,6 +2,8 @@
 
 AutoCompete competition
 
+Team Name: **Stream Processors**
+
 Team Members
 
 - Jon [theRemix](https://github.com/theRemix)
