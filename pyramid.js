@@ -6,35 +6,24 @@ const rl = readline.createInterface({
   terminal: false
 });
 
+const fillRow = num => new Array((num*2)-1)
+  .fill(null)
+  .map((_,i) => i+1)
+
+const buildPyramidStep = num =>
+  num === 1 ? [1] :
+  fillRow(num)
+    .map((i,j,a) => i <= num ? i : a.length-j)
+
 let input = 0
-let output = []
 
 rl.on('line', line => input = parseInt(line))
 
-
-rl.on('close', () => {
-
-  for(let i = 1; i <= input; i++){
-    let line = []
-    for(let j = 1; j <= i; j++){
-      line.push(j)
-    }
-    for(let j = i-1; j > 0; j--){
-      line.push(j)
-    }
-    output.push(line.join(''))
-  }
-
-  for(let i = input-1; i > 0; i--){
-    let line = []
-    for(let j = 1; j <= i; j++){
-      line.push(j)
-    }
-    for(let j = i-1; j > 0; j--){
-      line.push(j)
-    }
-    output.push(line.join(''))
-  }
-
-  console.log(output.join('\n'))
-})
+rl.on('close', () =>
+  console.log(
+    fillRow(input)
+      .reduce((row, i, j, a) =>
+        [...row, buildPyramidStep(i <= input ? i : a.length-j).join('')],[])
+      .join('\n')
+  )
+)
